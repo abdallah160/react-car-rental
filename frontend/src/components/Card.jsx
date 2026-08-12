@@ -1,5 +1,5 @@
-export default function Card() {
+export default function Card({ name }) {
     return <>
-        <img></img>
+        <p>{name}</p>
     </>
 }
