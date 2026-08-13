@@ -4,7 +4,7 @@ import Card from "../components/Card";
 export default function Home() {
     const response = useLoaderData();
     return <>
-        {response.map(item => <Card key={item.key} name={item.name} />)}
+        {response.map(item => <Card key={item.id} dataObj={item} />)}
 
     </>
 }

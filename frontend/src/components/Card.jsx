@@ -1,5 +1,9 @@
-export default function Card({ name }) {
+export default function Card({ dataObj }) {
     return <>
-        <p>{name}</p>
+        <p>{dataObj.name}</p>
+        <p>{dataObj.description}</p>
+        <p>{dataObj.pricePerDay}</p>
+        <p>{dataObj.image}</p>
+        <p>{dataObj.available}</p>
     </>
 }
