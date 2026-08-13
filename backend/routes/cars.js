@@ -3,39 +3,30 @@ const router = express.Router();
 const db = require('../database/database');
 
 // Helper to format car response (parse JSON images, convert available to boolean)
-function formatCar(row) {
-  if (!row) return null;
+function formatCar(car) {
+  if (!car) return null;
   return {
-    ...row,
-    images: row.images ? JSON.parse(row.images) : [],
-    available: row.available === 1
+    ...car,
+    images: Array.isArray(car.images) ? car.images : (typeof car.images === 'string' ? JSON.parse(car.images) : []),
+    available: car.available === true || car.available === 1
   };
 }
 
 // GET /api/cars - Get all cars
 router.get('/', (req, res) => {
-  const sql = 'SELECT * FROM cars';
-  db.all(sql, [], (err, rows) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
-    const formattedCars = rows.map(formatCar);
-    res.json(formattedCars);
-  });
+  const dbData = db.read();
+  const formattedCars = dbData.cars.map(formatCar);
+  res.json(formattedCars);
 });
 
 // GET /api/cars/:id - Get a single car
 router.get('/:id', (req, res) => {
-  const sql = 'SELECT * FROM cars WHERE id = ?';
-  db.get(sql, [req.params.id], (err, row) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
-    if (!row) {
-      return res.status(404).json({ error: 'Car not found' });
-    }
-    res.json(formatCar(row));
-  });
+  const dbData = db.read();
+  const car = dbData.cars.find(c => c.id === Number(req.params.id));
+  if (!car) {
+    return res.status(404).json({ error: 'Car not found' });
+  }
+  res.json(formatCar(car));
 });
 
 // POST /api/cars - Create a new car
@@ -46,82 +37,66 @@ router.post('/', (req, res) => {
     return res.status(400).json({ error: 'Name, description, and pricePerDay are required' });
   }
 
-  const sql = `
-    INSERT INTO cars (name, description, pricePerDay, images, available)
-    VALUES (?, ?, ?, ?, ?)
-  `;
-  
-  const imagesStr = JSON.stringify(images || []);
-  const availableVal = available === false ? 0 : 1;
+  const dbData = db.read();
+  const nextId = dbData.cars.reduce((max, car) => car.id > max ? car.id : max, 0) + 1;
 
-  // Use a standard function (not an arrow function) to access `this.lastID`
-  db.run(sql, [name, description, pricePerDay, imagesStr, availableVal], function(err) {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
-    const insertId = this.lastID;
-    
-    // Retrieve and return the newly created car
-    db.get('SELECT * FROM cars WHERE id = ?', [insertId], (err, row) => {
-      if (err) {
-        return res.status(500).json({ error: err.message });
-      }
-      res.status(201).json(formatCar(row));
-    });
-  });
+  const newCar = {
+    id: nextId,
+    name,
+    description,
+    pricePerDay: Number(pricePerDay),
+    images: Array.isArray(images) ? images : [],
+    available: available !== false
+  };
+
+  dbData.cars.push(newCar);
+  db.write(dbData);
+
+  res.status(201).json(formatCar(newCar));
 });
 
 // PUT /api/cars/:id - Update an existing car
 router.put('/:id', (req, res) => {
   const { name, description, pricePerDay, images, available } = req.body;
-  const carId = req.params.id;
+  const carId = Number(req.params.id);
 
   if (!name || !description || pricePerDay === undefined) {
     return res.status(400).json({ error: 'Name, description, and pricePerDay are required' });
   }
 
-  const sql = `
-    UPDATE cars 
-    SET name = ?, description = ?, pricePerDay = ?, images = ?, available = ?
-    WHERE id = ?
-  `;
+  const dbData = db.read();
+  const carIndex = dbData.cars.findIndex(c => c.id === carId);
+  if (carIndex === -1) {
+    return res.status(404).json({ error: 'Car not found' });
+  }
 
-  const imagesStr = JSON.stringify(images || []);
-  const availableVal = available === false ? 0 : 1;
+  dbData.cars[carIndex] = {
+    id: carId,
+    name,
+    description,
+    pricePerDay: Number(pricePerDay),
+    images: Array.isArray(images) ? images : [],
+    available: available !== false
+  };
 
-  // Use standard function to access `this.changes`
-  db.run(sql, [name, description, pricePerDay, imagesStr, availableVal, carId], function(err) {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
-    if (this.changes === 0) {
-      return res.status(404).json({ error: 'Car not found' });
-    }
-
-    // Retrieve and return the updated car
-    db.get('SELECT * FROM cars WHERE id = ?', [carId], (err, row) => {
-      if (err) {
-        return res.status(500).json({ error: err.message });
-      }
-      res.json(formatCar(row));
-    });
-  });
+  db.write(dbData);
+  res.json(formatCar(dbData.cars[carIndex]));
 });
 
 // DELETE /api/cars/:id - Delete a car
 router.delete('/:id', (req, res) => {
-  const carId = req.params.id;
-  const sql = 'DELETE FROM cars WHERE id = ?';
+  const carId = Number(req.params.id);
+  const dbData = db.read();
+  
+  const carIndex = dbData.cars.findIndex(c => c.id === carId);
+  if (carIndex === -1) {
+    return res.status(404).json({ error: 'Car not found' });
+  }
 
-  db.run(sql, [carId], function(err) {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
-    if (this.changes === 0) {
-      return res.status(404).json({ error: 'Car not found' });
-    }
-    res.json({ message: 'Car deleted successfully', id: carId });
-  });
+  dbData.cars.splice(carIndex, 1);
+  db.write(dbData);
+
+  res.json({ message: 'Car deleted successfully', id: carId });
 });
 
 module.exports = router;

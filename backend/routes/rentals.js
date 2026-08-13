@@ -4,23 +4,28 @@ const db = require('../database/database');
 
 // GET /api/rentals/user/:userId - Retrieve all rentals for a specific user
 router.get('/user/:userId', (req, res) => {
-  const userId = req.params.userId;
+  const userId = Number(req.params.userId);
+  const dbData = db.read();
   
-  // Join rentals with cars to provide name/info about the rented car
-  const sql = `
-    SELECT r.id, r.userId, r.carId, r.startDate, r.endDate, r.totalPrice,
-           c.name as carName, c.description as carDescription
-    FROM rentals r
-    JOIN cars c ON r.carId = c.id
-    WHERE r.userId = ?
-  `;
-
-  db.all(sql, [userId], (err, rows) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
-    res.json(rows);
+  // Filter rentals by userId
+  const userRentals = dbData.rentals.filter(r => r.userId === userId);
+  
+  // Join with car info to simulate SQL JOIN
+  const result = userRentals.map(r => {
+    const car = dbData.cars.find(c => c.id === r.carId);
+    return {
+      id: r.id,
+      userId: r.userId,
+      carId: r.carId,
+      startDate: r.startDate,
+      endDate: r.endDate,
+      totalPrice: r.totalPrice,
+      carName: car ? car.name : 'Unknown Car',
+      carDescription: car ? car.description : ''
+    };
   });
+  
+  res.json(result);
 });
 
 // POST /api/rentals - Create a new rental
@@ -47,38 +52,29 @@ router.post('/', (req, res) => {
   // Calculate rental duration in days (minimum 1 day)
   const diffDays = Math.max(1, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
 
-  // Retrieve the car's pricePerDay
-  db.get('SELECT pricePerDay, available FROM cars WHERE id = ?', [carId], (err, car) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
-    if (!car) {
-      return res.status(404).json({ error: 'Car not found' });
-    }
+  const dbData = db.read();
+  const car = dbData.cars.find(c => c.id === Number(carId));
+  
+  if (!car) {
+    return res.status(404).json({ error: 'Car not found' });
+  }
 
-    const totalPrice = diffDays * car.pricePerDay;
+  const totalPrice = diffDays * car.pricePerDay;
+  const nextId = dbData.rentals.reduce((max, r) => r.id > max ? r.id : max, 0) + 1;
 
-    // Insert the rental booking
-    const sqlInsert = `
-      INSERT INTO rentals (userId, carId, startDate, endDate, totalPrice)
-      VALUES (?, ?, ?, ?, ?)
-    `;
+  const newRental = {
+    id: nextId,
+    userId: Number(userId),
+    carId: Number(carId),
+    startDate,
+    endDate,
+    totalPrice
+  };
 
-    db.run(sqlInsert, [userId, carId, startDate, endDate, totalPrice], function(err) {
-      if (err) {
-        return res.status(500).json({ error: err.message });
-      }
-      const rentalId = this.lastID;
+  dbData.rentals.push(newRental);
+  db.write(dbData);
 
-      // Retrieve and return the created rental record
-      db.get('SELECT * FROM rentals WHERE id = ?', [rentalId], (err, newRental) => {
-        if (err) {
-          return res.status(500).json({ error: err.message });
-        }
-        res.status(201).json(newRental);
-      });
-    });
-  });
+  res.status(201).json(newRental);
 });
 
 module.exports = router;

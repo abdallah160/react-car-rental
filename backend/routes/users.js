@@ -10,23 +10,19 @@ router.post('/login', (req, res) => {
     return res.status(400).json({ error: 'Email and password are required' });
   }
 
-  const sql = 'SELECT * FROM users WHERE email = ?';
-  db.get(sql, [email], (err, user) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
+  const dbData = db.read();
+  const user = dbData.users.find(u => u.email === email);
 
-    // Check if user exists and password matches
-    if (!user || user.password !== password) {
-      return res.status(401).json({ error: 'Invalid email or password' });
-    }
+  // Check if user exists and password matches
+  if (!user || user.password !== password) {
+    return res.status(401).json({ error: 'Invalid email or password' });
+  }
 
-    // Return simple user profile (no JWT or complex auth required)
-    res.json({
-      id: user.id,
-      name: user.name,
-      role: user.role
-    });
+  // Return simple user profile (no JWT or complex auth required)
+  res.json({
+    id: user.id,
+    name: user.name,
+    role: user.role
   });
 });
 
