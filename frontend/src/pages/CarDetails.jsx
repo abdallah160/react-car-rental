@@ -1,8 +1,7 @@
-import { useLoaderData } from "react-router-dom"
+import { Form, useLoaderData } from "react-router-dom"
 
 export default function CarDetails() {
     const data = useLoaderData();
-    console.log(data);
     return (
         <div id="details-content">
 
@@ -17,8 +16,12 @@ export default function CarDetails() {
                     </div>
                     <div>
                         <p>for only ${data.pricePerDay}/day</p>
-                        <input type="text" placeholder="Add a message (optional)" />
-                        <button>Rent</button>
+                        {/*<Form method="post">*/}
+                        <input type="email" placeholder="Enter your email" name="email" required />
+                        <input type="hidden" name="car" value={data.id} />
+                        <button type="submit">Rent</button>
+                        {/*</Form>*/}
+
                     </div>
                 </div>
 
