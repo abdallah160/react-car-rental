@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
+@font-face {
+  font-family: 'Instagram Sans Script';
+  src: url('./assets/InstagramSansScript-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   margin: 0;
   background-color: rgb(234, 234, 234);
@@ -14,15 +21,19 @@ body {
   cursor: pointer;
   box-sizing: border-box;
   text-align: center;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.02);
+  height: 450px;
+  align-items: center;
+
 }
 
 .card:hover{
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.10);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
  
 }
 .card img{
-  max-width: 300px;
+  max-width: 260px;
+  
 }
 .card .description{
   color: #262626;
@@ -38,7 +49,7 @@ body {
 .card .price{
   font-size: x-large;
   color: rgb(100, 182, 71);
-  margin-top: auto;
+
   padding: 5px 5px 5px 5px;
 }
 
@@ -46,6 +57,128 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 20px;
-  margin: 80px auto 0 auto;
+  gap: 25px;
+  margin: 40px auto 0 auto;
+  max-width: 1400px;
+}
+#nav-bar{
+  font-family: 'Instagram Sans Script', sans-serif;
+  background-color: rgb(245, 245, 245);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.02);
+  height: 60px;
+  padding: 10px;
+  padding-left: 80px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  color: rgb(100, 182, 71);
+}
+
+#nav-bar h1{
+  margin-top: 8px;
+  font-weight:normal;
+}
+
+#main-content{
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 80px;
+
+}
+
+#main-content aside{
+  display: flex;
+  flex-direction: column;
+  min-width:  300px;
+  position: sticky;
+  align-items: center;
+  top:80px;
+  margin-right: 0px;
+  height: calc(100vh - 80px);
+  background-color: rgb(245, 245, 245);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.01);
+
+}
+#main-content aside img{
+  margin-top: 30px;
+  width: 200px;
+}
+
+#cars-link{
+  width: 100%;
+  text-align: center;
+  height: 50px;
+  background-color: rgb(245, 245, 245);
+  padding-top: 20px;
+  font-size: x-large;
+  color: rgb(0, 0, 0);
+}
+
+#history-link{
+  width: 100%;
+  text-align: center;
+  height: 50px;
+  background-color: rgb(245, 245, 245);
+  padding-top: 20px;
+  font-size: x-large;
+  color: rgb(0, 0, 0);
+}
+#details-box{
+  display: flex;
+  background-color: rgb(245, 245, 245);
+  width: 1300px;
+  height: 600px;
+  position: relative;
+  top: 45%;
+  left: 62%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.02);
+}
+
+a {
+  text-decoration: none; 
+  color: inherit;       
+}
+
+#details-box img{
+  height: 520px;
+  align-items: center;
+
+}
+#details-data{
+  padding: 60px 80px 80px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: larger;
+}
+#details-data input{
+  height: 48px;
+  border: none;
+  border-radius: 8px 0px 0px 8px;
+  border-color: rgb(100, 182, 71);
+  min-width: 300px;
+  padding-left: 20px;
+  font-size: large;
+}
+
+#details-data button{
+  border: none;
+  border-radius: 0px 8px 8px 0px;
+  background-color: rgb(100, 182, 71);
+  height: 50px;
+  color: rgb(245, 245, 245);
+  min-width: 80px;
+  cursor: pointer;
+  font-size: large;
+}
+#details-data button:hover{
+  background-color: rgb(93, 170, 65);
+
+}
+
+#details-data input:focus{
+  box-shadow: inset 0 0 0 2px rgb(100, 182, 71);
+  outline: none;
 }

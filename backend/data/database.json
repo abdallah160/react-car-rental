@@ -16,33 +16,104 @@
     }
   ],
   "cars": [
+    
     {
-      "id": 1,
-      "name": "Toyota Corolla",
-      "description": "A reliable and fuel-efficient compact sedan, perfect for daily commuting and city driving.",
-      "pricePerDay": 45,
+      "id": 4,
+      "name": "Citroën C3",
+      "description": "A modern, stylish, and comfortable French hatchback, ideal for navigating narrow city streets.",
+      "pricePerDay": 50,
       "images": [
-        "/images/toyota_corolla.png"
+        "/images/citroen_c3.png"
       ],
       "available": true
     },
     {
-      "id": 2,
-      "name": "Tesla Model 3",
-      "description": "Sleek, fully electric premium sedan with autopilot features, impressive acceleration, and long range.",
-      "pricePerDay": 95,
+      "id": 5,
+      "name": "Opel Astra",
+      "description": "Sleek and efficient German compact hatchback with a premium interior and advanced safety features.",
+      "pricePerDay": 55,
       "images": [
-        "/images/tesla_model_3.png"
+        "/images/opel_astra.png"
       ],
       "available": true
     },
     {
-      "id": 3,
-      "name": "Ford Mustang GT",
-      "description": "Iconic American muscle car with a powerful V8 engine, sport suspension, and thrilling driving dynamics.",
-      "pricePerDay": 120,
+      "id": 6,
+      "name": "Opel Crossland",
+      "description": "A spacious compact crossover with high driving position, flexible seating, and smart storage.",
+      "pricePerDay": 65,
       "images": [
-        "/images/ford_mustang.png"
+        "/images/opel_crossland.png"
+      ],
+      "available": true
+    },
+    {
+      "id": 7,
+      "name": "Opel Mokka",
+      "description": "Bold and sporty compact SUV with a striking design, digital cockpit, and agile performance.",
+      "pricePerDay": 70,
+      "images": [
+        "/images/opel_mokka.png"
+      ],
+      "available": true
+    },
+    {
+      "id": 8,
+      "name": "Citroën C4",
+      "description": "A premium crossover hatchback combining sedan elegance with SUV styling, offering ultimate comfort.",
+      "pricePerDay": 60,
+      "images": [
+        "/images/newCars/citroen_c4_white_perspective1_16544_20fb39a227.png"
+      ],
+      "available": true
+    },
+    {
+      "id": 9,
+      "name": "Compact Hatchback",
+      "description": "An agile, fuel-efficient compact hatchback, perfect for navigating narrow urban streets.",
+      "pricePerDay": 40,
+      "images": [
+        "/images/newCars/img_19_ccfe5c622d.png"
+      ],
+      "available": true
+    },
+    {
+      "id": 10,
+      "name": "Opel Crossland (White)",
+      "description": "A spacious compact crossover with high driving position, flexible seating, and smart storage.",
+      "pricePerDay": 65,
+      "images": [
+        "/images/newCars/opel_crossland_arctic_white_perspective1_16702_40a06f8e6f.png"
+      ],
+      "available": true
+    },
+    {
+      "id": 11,
+      "name": "Peugeot 208e",
+      "description": "A modern, fully electric city hatchback with a futuristic 3D cockpit and smooth driving experience.",
+      "pricePerDay": 55,
+      "images": [
+        "/images/newCars/peugeot_208e_artense_silver_perspective1_16501_1504af4809.png"
+      ],
+      "available": true
+    },
+    {
+      "id": 12,
+      "name": "Peugeot 3008",
+      "description": "A sophisticated family SUV featuring a high-tech cabin, panoramic views, and premium road presence.",
+      "pricePerDay": 80,
+      "images": [
+        "/images/newCars/peugeot_3008_white_perspective1_16537_beed76a19b.png"
+      ],
+      "available": true
+    },
+    {
+      "id": 13,
+      "name": "Peugeot 308",
+      "description": "A dynamic and stylish compact hatchback offering sharp handling, digital cockpit, and great efficiency.",
+      "pricePerDay": 70,
+      "images": [
+        "/images/newCars/peugeot_308_artense_silver_perspective1_16505_5b28670d8d.png"
       ],
       "available": true
     }

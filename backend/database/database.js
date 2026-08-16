@@ -10,48 +10,8 @@ if (!fs.existsSync(dbDir)) {
 const dbPath = path.join(dbDir, 'database.json');
 
 const defaultData = {
-  users: [
-    {
-      id: 1,
-      name: 'John Doe',
-      email: 'user@example.com',
-      password: 'user123',
-      role: 'user'
-    },
-    {
-      id: 2,
-      name: 'Admin Jane',
-      email: 'admin@example.com',
-      password: 'admin123',
-      role: 'admin'
-    }
-  ],
-  cars: [
-    {
-      id: 1,
-      name: 'Toyota Corolla',
-      description: 'A reliable and fuel-efficient compact sedan, perfect for daily commuting and city driving.',
-      pricePerDay: 45.0,
-      images: ['/images/toyota_corolla.png'],
-      available: true
-    },
-    {
-      id: 2,
-      name: 'Tesla Model 3',
-      description: 'Sleek, fully electric premium sedan with autopilot features, impressive acceleration, and long range.',
-      pricePerDay: 95.0,
-      images: ['/images/tesla_model_3.png'],
-      available: true
-    },
-    {
-      id: 3,
-      name: 'Ford Mustang GT',
-      description: 'Iconic American muscle car with a powerful V8 engine, sport suspension, and thrilling driving dynamics.',
-      pricePerDay: 120.0,
-      images: ['/images/ford_mustang.png'],
-      available: true
-    }
-  ],
+  users: [],
+  cars: [],
   rentals: []
 };
 
