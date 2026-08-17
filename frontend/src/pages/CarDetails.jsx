@@ -4,6 +4,7 @@ import RentalModal from "../components/RentalModal";
 
 export default function CarDetails() {
     const data = useLoaderData();
+    const modalRef = useRef();
 
     const [modalState, setModalState] = useState(false);
     const [email, setEmail] = useState();
@@ -14,6 +15,9 @@ export default function CarDetails() {
     function handleRentButton() {
 
         setModalState(true);
+    }
+    function closeModal() {
+        setModalState(false)
     }
     return (
         <div id="details-content">
@@ -31,11 +35,11 @@ export default function CarDetails() {
 
                         <p>for only ${data.pricePerDay}/day</p>
                         {/*<Form method="post">*/}
-                        <input type="email" placeholder="Enter your email" name="email" required />
-                        <input type="hidden" name="car" value={data.id} onChange={handleEmailChange} />
+                        <input type="email" placeholder="Enter your email" name="email" required onChange={handleEmailChange} />
+                        <input type="hidden" name="car" value={data.id} />
                         <button type="submit" onClick={handleRentButton}>Rent</button>
                         {/*</Form>*/}
-                        <RentalModal modalState={modalState} email={email} carID={data.id} />
+                        <RentalModal modalState={modalState} email={email} carID={data.id} closeModal={closeModal} modalRef={modalRef} />
 
                     </div>
                 </div>

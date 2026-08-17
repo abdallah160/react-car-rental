@@ -138,6 +138,7 @@ body {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.02);
 }
 
+
 a {
   text-decoration: none; 
   color: inherit;       
@@ -187,6 +188,71 @@ a {
 #sidebar-button {
     display: none;
   }
+
+#rental-modal{
+  z-index: 5000;
+  background-color: rgb(245, 245, 245);
+  border-radius: 10px;
+  width: 300px;
+  height: 450px;
+  border: none;
+  padding: 40px;
+  top: 20vh;
+  color: #262626;
+  box-shadow: 0 0 0 100vh rgba(0, 0, 0, 0.6);
+
+}
+
+
+#date-form{
+  display: flex;
+  flex-direction: column;
+  gap:20px
+}
+#date-form label{
+  font-size: larger;
+}
+#date-form input{
+  height: 48px;
+  border: none;
+  border-radius: 8px 8px 8px 8px;
+  border-color: rgb(100, 182, 71);
+  width: 60%;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: larger;
+  
+}
+
+#full-form{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+#full-form button{
+  border: none;
+  border-radius: 8px 8px 8px 8px;
+  background-color: rgb(100, 182, 71);
+  height: 50px;
+  color: rgb(245, 245, 245);
+  min-width: 80px;
+  cursor: pointer;
+  font-size: large;
+}
+
+#upper-section{
+  display: flex;
+  justify-content: space-between;
+
+}
+#upper-section button{
+  background: none;
+  border: none;
+  font-size: x-large;
+  cursor: pointer;
+}
+
+
 @media (max-width: 1466px) {
   #main-content aside{
     display: none;
@@ -222,6 +288,7 @@ a {
   }
 
 }
+
 
 @media (max-width: 1165px) {
   #details-box{
