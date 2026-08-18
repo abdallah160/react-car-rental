@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Form, useLoaderData } from "react-router-dom"
+import { useLoaderData } from "react-router-dom"
 import RentalModal from "../components/RentalModal";
 
 export default function CarDetails() {

@@ -1,12 +1,10 @@
 import { Link, NavLink, Outlet } from "react-router-dom"
-import img from '../assets/gray-user-profile-icon-png-fP8Q1P.png'
 import { useState } from "react";
 export default function RootLayout() {
     const [sideBarClass, setSideBarClass] = useState(undefined);
     function toggleSideBar() {
         setSideBarClass((prev) => prev ? undefined : 'open')
     }
-
 
     return (
         <>

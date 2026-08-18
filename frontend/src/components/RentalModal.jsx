@@ -1,6 +1,5 @@
 import { Form } from "react-router-dom";
 import { createPortal } from "react-dom";
-import { useRef } from "react";
 export default function RentalModal({ modalState, email, carID, closeModal, modalRef }) {
 
     if (!modalState) return null;
