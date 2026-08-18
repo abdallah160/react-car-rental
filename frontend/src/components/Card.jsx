@@ -1,10 +1,26 @@
 export default function Card({ dataObj }) {
-    return <div className="card">
-        <p className="name">{dataObj.name}</p>
+    let availability;
+    let addedClass;
+
+    if (!dataObj.available) {
+        availability = " (unavailable)";
+        addedClass = "unavailable";
+
+    }
+    else {
+        availability = null;
+        addedClass = null;
+
+    }
+
+
+    return <div className={`card ${addedClass}`}>
+        <p className="name">{dataObj.name}  {availability}  </p>
 
 
         <img src={`http://localhost:5000${dataObj.images[0]}`} />
         <p className="description">{dataObj.description}</p>
         <p className="price">${dataObj.pricePerDay}</p>
+
     </div>
 }

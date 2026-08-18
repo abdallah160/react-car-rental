@@ -19,6 +19,8 @@ export default function CarDetails() {
     function closeModal() {
         setModalState(false)
     }
+
+    if (!data.available) return <h1>Car not available</h1>
     return (
         <div id="details-content">
 
