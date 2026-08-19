@@ -6,11 +6,6 @@ export default function CarDetails() {
     const data = useLoaderData();
     const modalRef = useRef();
     const [modalState, setModalState] = useState(false);
-    const [email, setEmail] = useState();
-
-    function handleEmailChange(e) {
-        setEmail(e.target.value);
-    }
 
     function handleRentButton() {
         setModalState(true);

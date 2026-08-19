@@ -1,7 +1,8 @@
-import { Form } from "react-router-dom";
+import { Form, useActionData } from "react-router-dom";
 import { createPortal } from "react-dom";
 
 export default function RentalModal({ modalState, email, carID, closeModal, modalRef }) {
+    const data = useActionData();
 
     if (!modalState) return null;
     const user = JSON.parse(localStorage.getItem("user"))
@@ -26,7 +27,9 @@ export default function RentalModal({ modalState, email, carID, closeModal, moda
             <input type="hidden" name="userID" value={user.id} />
             <input type="hidden" name="carID" value={carID} />
             <button>Submit</button>
+
         </Form>
+        {data === "Invalid Date" && <p>Please select a valid interval</p>}
 
 
     </dialog>, document.getElementById("modal"))

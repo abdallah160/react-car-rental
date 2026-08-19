@@ -22,6 +22,7 @@ export default function RootLayout() {
                 <button onClick={toggleSideBar} id="sidebar-button">=</button>
                 <header>
                     <Link to="/" ><h1>Rent.com</h1></Link>
+                    {user.role === "admin" && <button>+ Add a Car</button>}
                 </header>
             </div>
 

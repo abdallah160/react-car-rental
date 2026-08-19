@@ -7,6 +7,10 @@ export default async function rentalAction({ request }) {
   const startDate = formData.get("startDate");
   const endDate = formData.get("endDate");
 
+  if (startDate > endDate) {
+    return "Invalid Date";
+  }
+
   console.log(userId + carId + startDate + endDate);
   const response = await fetch("http://localhost:5000/api/rentals", {
     method: "POST",
