@@ -1,6 +1,9 @@
-import { Form } from "react-router-dom"
+import { useState } from "react";
+import { Form, useActionData } from "react-router-dom"
 
 export default function SignPage() {
+    let data = useActionData()
+    console.log(data);
 
     return <div className="sign-form">
         <div id="details-box1">
@@ -13,6 +16,8 @@ export default function SignPage() {
                     <label>Password</label>
                     <input type="password" name="password" />
                     <button>Sign In</button>
+                    {data === "Invalid credentials" && <p>Invalid credentials</p>}
+
                 </Form>
 
             </div>

@@ -17,7 +17,7 @@ export default async function loginAction({ request }) {
   const data = await response.json();
 
   if (!response.ok) {
-    return { error: data.message || "Invalid credentials" };
+    return "Invalid credentials";
   }
 
   return redirect("/");
