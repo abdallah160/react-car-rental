@@ -1,12 +1,16 @@
-import { Link, NavLink, Outlet, redirect, useNavigate } from "react-router-dom"
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom"
 import { useState } from "react";
+
+
 export default function RootLayout() {
     const [sideBarClass, setSideBarClass] = useState(undefined);
+
     function toggleSideBar() {
         setSideBarClass((prev) => prev ? undefined : 'open')
     }
     const user = JSON.parse(localStorage.getItem("user"));
     const navigate = useNavigate();
+
     function logout() {
         localStorage.removeItem("user");
         navigate("/login");
@@ -28,10 +32,8 @@ export default function RootLayout() {
 
                     <p className="logout-sentence">signed in as: {user.name}</p>
                     <button onClick={logout} className="logout">Logout</button>
-
                 </aside>
                 <div className="outlet-div"><Outlet /></div>
-
             </div >
         </>
 

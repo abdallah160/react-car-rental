@@ -10,10 +10,9 @@ import History from './pages/History';
 import Home from './pages/Home'
 import SignPage from './pages/Sign';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 function App() {
   const router = createBrowserRouter([
-
-
     {
       path: "/login", element: <SignPage />, action: loginAction
     },
@@ -27,15 +26,12 @@ function App() {
 
           ]
         }
-
       ]
     }
-
   ]);
+
   return (
     <>
-
-
       <RouterProvider router={router}></RouterProvider>
 
     </>

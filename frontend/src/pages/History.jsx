@@ -1,5 +1,4 @@
 import { useLoaderData } from "react-router-dom"
-
 export default function History() {
     let data = useLoaderData();
     console.log(data);

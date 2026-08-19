@@ -1,16 +1,16 @@
 import { Form } from "react-router-dom";
 import { createPortal } from "react-dom";
+
 export default function RentalModal({ modalState, email, carID, closeModal, modalRef }) {
 
     if (!modalState) return null;
     const user = JSON.parse(localStorage.getItem("user"))
     return createPortal(<dialog id="rental-modal" ref={modalRef} open>
         <div id="upper-section">
-
-
             <h1 >Select a time period</h1>
             <button onClick={closeModal}>X</button>
         </div>
+
         <Form method="post" id="full-form">
             <div id="date-form">
                 <div>
