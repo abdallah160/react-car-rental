@@ -138,6 +138,22 @@ body {
   color: rgb(0, 0, 0);
 }
 
+.logout{
+  width: 100%;
+  text-align: center;
+  height: 50px;
+  background-color: rgb(245, 245, 245);
+  padding-top: 20px;
+  font-size: x-large;
+  color: rgb(0, 0, 0);
+  border: none;
+  cursor: pointer;
+
+}
+.logout-sentence{
+  margin-top: 62vh;
+}
+
 
 a {
   text-decoration: none; 

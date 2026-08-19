@@ -1,3 +1,4 @@
+import ProtectedLayout from './components/ProtectedLayout';
 import RootLayout from './components/RootLayout';
 import detailsLoader from './loaders/detailsLoader';
 import homeLoader from './loaders/homeLoader';
@@ -9,21 +10,32 @@ import SignPage from './pages/Sign';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 function App() {
   const router = createBrowserRouter([
+
+
     {
       path: "/login", element: <SignPage />, action: loginAction
     },
     {
-      path: "/", element: <RootLayout />, children: [
-        { path: '/', element: <Home />, loader: homeLoader },
-        { path: '/:id', element: <CarDetails />, loader: detailsLoader/*, action: rentalAction */ },
-        { path: '/history', element: <History /> }
+      path: "/", element: <ProtectedLayout />, children: [
+        {
+          path: "/", element: <RootLayout />, children: [
+            { path: '/', element: <Home />, loader: homeLoader },
+            { path: '/:id', element: <CarDetails />, loader: detailsLoader/*, action: rentalAction */ },
+            { path: '/history', element: <History /> }
+
+          ]
+        }
 
       ]
     }
+
   ]);
   return (
     <>
+
+
       <RouterProvider router={router}></RouterProvider>
+
     </>
   )
 }

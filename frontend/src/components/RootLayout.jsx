@@ -1,11 +1,17 @@
-import { Link, NavLink, Outlet } from "react-router-dom"
+import { Link, NavLink, Outlet, redirect, useNavigate } from "react-router-dom"
 import { useState } from "react";
 export default function RootLayout() {
     const [sideBarClass, setSideBarClass] = useState(undefined);
     function toggleSideBar() {
         setSideBarClass((prev) => prev ? undefined : 'open')
     }
+    const user = JSON.parse(localStorage.getItem("user"));
+    const navigate = useNavigate();
+    function logout() {
+        localStorage.removeItem("user");
+        navigate("/login");
 
+    }
     return (
         <>
             <div id="nav-bar">
@@ -19,6 +25,10 @@ export default function RootLayout() {
                 <aside className={sideBarClass}>
                     <NavLink style={({ isActive }) => isActive ? { backgroundColor: "rgb(100, 182, 71)", color: "#fff" } : undefined} id="cars-link" to="/">Cars</NavLink>
                     <NavLink style={({ isActive }) => isActive ? { backgroundColor: "rgb(100, 182, 71)", color: "#fff" } : undefined} id="history-link" to="/history"> History</NavLink>
+
+                    <p className="logout-sentence">signed in as: {user.name}</p>
+                    <button onClick={logout} className="logout">Logout</button>
+
                 </aside>
                 <Outlet />
             </div >

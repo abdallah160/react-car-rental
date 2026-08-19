@@ -19,6 +19,7 @@ export default async function loginAction({ request }) {
   if (!response.ok) {
     return "Invalid credentials";
   }
+  localStorage.setItem("user", JSON.stringify(data));
 
   return redirect("/");
 }
