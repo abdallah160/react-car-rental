@@ -30,7 +30,8 @@ export default function RootLayout() {
                     <button onClick={logout} className="logout">Logout</button>
 
                 </aside>
-                <Outlet />
+                <div className="outlet-div"><Outlet /></div>
+
             </div >
         </>
 

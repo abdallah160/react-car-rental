@@ -121,10 +121,42 @@
     {
       "id": 1,
       "userId": 1,
-      "carId": 2,
-      "startDate": "2026-08-14",
-      "endDate": "2026-08-16",
-      "totalPrice": 190
+      "carId": 5,
+      "startDate": "2026-08-13",
+      "endDate": "2026-08-15",
+      "totalPrice": 110
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "carId": 6,
+      "startDate": "2026-08-15",
+      "endDate": "2026-08-29",
+      "totalPrice": 910
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "carId": 5,
+      "startDate": "2026-08-20",
+      "endDate": "2026-08-21",
+      "totalPrice": 55
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "carId": 5,
+      "startDate": "2026-08-05",
+      "endDate": "2026-08-22",
+      "totalPrice": 935
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "carId": 6,
+      "startDate": "2026-08-08",
+      "endDate": "2026-08-15",
+      "totalPrice": 455
     }
   ]
 }

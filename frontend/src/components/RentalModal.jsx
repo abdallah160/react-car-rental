@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 export default function RentalModal({ modalState, email, carID, closeModal, modalRef }) {
 
     if (!modalState) return null;
+    const user = JSON.parse(localStorage.getItem("user"))
     return createPortal(<dialog id="rental-modal" ref={modalRef} open>
         <div id="upper-section">
 
@@ -10,19 +11,19 @@ export default function RentalModal({ modalState, email, carID, closeModal, moda
             <h1 >Select a time period</h1>
             <button onClick={closeModal}>X</button>
         </div>
-        <Form id="full-form">
+        <Form method="post" id="full-form">
             <div id="date-form">
                 <div>
                     <label>From: </label>
-                    <input type="date" />
+                    <input type="date" name="startDate" />
                 </div>
                 <div>
                     <label>to: </label>
-                    <input type="date" />
+                    <input type="date" name="endDate" />
                 </div>
             </div>
-            <p>we will contact you on: {email}</p>
-            <input type="hidden" name="email" value={email} />
+            <p>you are signed as: {user.name}</p>
+            <input type="hidden" name="userID" value={user.id} />
             <input type="hidden" name="carID" value={carID} />
             <button>Submit</button>
         </Form>

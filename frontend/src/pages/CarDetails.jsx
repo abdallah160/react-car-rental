@@ -36,12 +36,9 @@ export default function CarDetails() {
                     <div>
 
                         <p>for only ${data.pricePerDay}/day</p>
-                        {/*<Form method="post">*/}
-                        <input type="email" placeholder="Enter your email" name="email" required onChange={handleEmailChange} />
-                        <input type="hidden" name="car" value={data.id} />
                         <button type="submit" onClick={handleRentButton}>Rent</button>
-                        {/*</Form>*/}
-                        <RentalModal modalState={modalState} email={email} carID={data.id} closeModal={closeModal} modalRef={modalRef} />
+
+                        <RentalModal modalState={modalState} carID={data.id} closeModal={closeModal} modalRef={modalRef} />
 
                     </div>
                 </div>
