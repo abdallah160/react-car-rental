@@ -173,6 +173,14 @@
       "startDate": "2026-08-18",
       "endDate": "2026-08-20",
       "totalPrice": 110
+    },
+    {
+      "id": 8,
+      "userId": 1,
+      "carId": 6,
+      "startDate": "2026-08-12",
+      "endDate": "2026-08-21",
+      "totalPrice": 585
     }
   ]
 }

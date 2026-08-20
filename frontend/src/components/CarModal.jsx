@@ -1,0 +1,38 @@
+import { Form, useParams } from "react-router-dom";
+import Modal from "./Modal";
+
+
+export default function CarModal({ modalState, closeModal, modalRef, type }) {
+    const params = useParams();
+    return <>
+        <Modal open={modalState} onClose={closeModal} modalRef={modalRef} label={type === "add" ? "Add a Car" : "Edit Details"}>
+            <Form method="post" action="/">
+
+                <div className="input-element">
+                    <label>Car Name: </label>
+                    <input type="text" name="name" />
+                </div>
+                <div className="input-element">
+                    <label>Price Per Day: </label>
+                    <input type="number" name="price" />
+                </div>
+                <div className="input-element">
+                    <label>Image URL: </label>
+                    <input type="text" name="images" />
+                </div>
+                <div className="input-element">
+                    <label>Description: </label>
+                    <input type="text" name="description" />
+                </div>
+                <input type="hidden" name="action" value={type} />
+                <input type="hidden" name="paramsID" value={params.id} />
+                <div className="input-element">
+                    <button>Submit</button>
+                </div>
+
+            </Form>
+
+        </Modal>
+    </>
+
+}

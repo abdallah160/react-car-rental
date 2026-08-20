@@ -1,5 +1,6 @@
 import ProtectedLayout from "./components/ProtectedLayout";
 import RootLayout from "./components/RootLayout";
+import addEditAction from "./loaders/addEditAction";
 import detailsLoader from "./loaders/detailsLoader";
 import historyLoader from "./loaders/historyLoader";
 import homeLoader from "./loaders/homeLoader";
@@ -26,7 +27,7 @@ function App() {
           path: "/",
           element: <RootLayout />,
           children: [
-            { path: "/", element: <Home />, loader: homeLoader },
+            { path: "/", element: <Home />, loader: homeLoader, action: addEditAction, },
             {
               path: "/:id",
               element: <CarDetails />,

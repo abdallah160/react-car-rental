@@ -1,36 +1,41 @@
 import { Form, useActionData } from "react-router-dom";
-import { createPortal } from "react-dom";
+import Modal from "./Modal";
 
-export default function RentalModal({ modalState, email, carID, closeModal, modalRef }) {
+export default function RentalModal({ modalState, carID, closeModal, modalRef }) {
     const data = useActionData();
+    const user = JSON.parse(localStorage.getItem("user"));
 
-    if (!modalState) return null;
-    const user = JSON.parse(localStorage.getItem("user"))
-    return createPortal(<dialog id="rental-modal" ref={modalRef} open>
-        <div id="upper-section">
-            <h1 >Select a time period</h1>
-            <button onClick={closeModal}>X</button>
-        </div>
+    return (
+        <Modal
+            open={modalState}
+            onClose={closeModal}
+            modalRef={modalRef}
+            label={"Set an Interval"}
+        >
+            <h1>Select a time period</h1>
 
-        <Form method="post" id="full-form">
-            <div id="date-form">
-                <div>
-                    <label>From: </label>
-                    <input type="date" name="startDate" />
+            <Form method="post" id="full-form">
+                <div id="date-form">
+                    <div>
+                        <label>From: </label>
+                        <input type="date" name="startDate" />
+                    </div>
+
+                    <div>
+                        <label>To: </label>
+                        <input type="date" name="endDate" />
+                    </div>
                 </div>
-                <div>
-                    <label>to: </label>
-                    <input type="date" name="endDate" />
-                </div>
-            </div>
-            <p>you are signed as: {user.name}</p>
-            <input type="hidden" name="userID" value={user.id} />
-            <input type="hidden" name="carID" value={carID} />
-            <button>Submit</button>
 
-        </Form>
-        {data === "Invalid Date" && <p>Please select a valid interval</p>}
+                <p>You are signed as: {user.name}</p>
 
+                <input type="hidden" name="userID" value={user.id} />
+                <input type="hidden" name="carID" value={carID} />
 
-    </dialog>, document.getElementById("modal"))
+                <button>Submit</button>
+            </Form>
+
+            {data === "Invalid Date" && <p>Please select a valid interval</p>}
+        </Modal>
+    );
 }
