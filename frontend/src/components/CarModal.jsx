@@ -1,9 +1,25 @@
-import { Form, useParams } from "react-router-dom";
+import { Form, useActionData, useParams, useNavigation } from "react-router-dom";
 import Modal from "./Modal";
+import { useEffect, useState } from "react";
 
 
 export default function CarModal({ modalState, closeModal, modalRef, type }) {
     const params = useParams();
+    const actionData = useActionData();
+    const navigation = useNavigation();
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    useEffect(() => {
+        if (navigation.state === "submitting" || navigation.state === "loading") {
+            setIsSubmitting(true);
+        } else if (navigation.state === "idle" && isSubmitting) {
+            setIsSubmitting(false);
+            if (actionData !== "Invalid data") {
+                closeModal();
+            }
+        }
+    }, [navigation.state, actionData, isSubmitting, closeModal]);
+
     return <>
         <Modal open={modalState} onClose={closeModal} modalRef={modalRef} label={type === "add" ? "Add a Car" : "Edit Details"}>
             <Form method="post" action="/">

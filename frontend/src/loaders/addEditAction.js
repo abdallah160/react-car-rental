@@ -31,6 +31,5 @@ export default async function addEditAction({ request }) {
   if (!response.ok) {
     return "Invalid data";
   }
-
-  return redirect("/");
+  return redirect(`/${data.id}`);
 }

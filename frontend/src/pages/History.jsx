@@ -1,5 +1,9 @@
 import { useLoaderData } from "react-router-dom"
 export default function History() {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user.role == "admin") {
+        return <h2> History is available for normal users</h2>
+    }
     let data = useLoaderData();
     console.log(data);
     return <table>
