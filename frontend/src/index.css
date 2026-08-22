@@ -12,6 +12,7 @@ body {
   background-color: rgb(234, 234, 234);
   font-family: "Outfit", sans-serif;
 }
+
 .card {
   display: flex;
   flex-direction: column;
@@ -38,13 +39,16 @@ body {
 .card:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
 }
+
 .card img {
   max-width: 260px;
 }
+
 .card .description {
   color: #262626;
   padding: 5px;
 }
+
 .card .name {
   font-weight: 600;
   font-size: large;
@@ -67,6 +71,7 @@ body {
   margin: 40px auto 0 auto;
   max-width: 1400px;
 }
+
 #nav-bar {
   font-family: "Instagram Sans Script", sans-serif;
   background-color: rgb(245, 245, 245);
@@ -104,11 +109,13 @@ body {
   width: 150px;
   height: 60px;
 }
+
 #main-content {
   display: flex;
   justify-content: flex-start;
   margin-top: 80px;
 }
+
 .input-element {
   display: flex;
   width: 100%;
@@ -137,6 +144,7 @@ body {
   font-size: larger;
   cursor: pointer;
 }
+
 .input-element button:hover {
   background-color: rgb(85, 155, 60);
 }
@@ -165,6 +173,7 @@ body {
   background-color: rgb(245, 245, 245);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.01);
 }
+
 #main-content aside img {
   margin-top: 30px;
   width: 200px;
@@ -201,6 +210,7 @@ body {
   border: none;
   cursor: pointer;
 }
+
 .logout-sentence {
   margin-top: 62vh;
 }
@@ -226,6 +236,7 @@ a {
   height: 520px;
   align-items: center;
 }
+
 #details-data {
   padding: 60px 80px 80px 20px;
   display: flex;
@@ -233,6 +244,7 @@ a {
   justify-content: space-between;
   font-size: larger;
 }
+
 #details-data input {
   height: 48px;
   border: none;
@@ -253,6 +265,7 @@ a {
   cursor: pointer;
   font-size: large;
 }
+
 #details-data button:hover {
   background-color: rgb(93, 170, 65);
 }
@@ -270,6 +283,7 @@ table {
   margin: 20px;
   margin-left: -4%;
 }
+
 th {
   background-color: #d7d7d7;
   color: #1e293b;
@@ -280,6 +294,7 @@ th,
 td {
   padding: 12px 16px;
 }
+
 .outlet-div {
   margin-left: 4%;
 }
@@ -301,6 +316,7 @@ td {
   height: 520px;
   align-items: center;
 }
+
 #details-data1 {
   padding: 60px 80px 80px 20px;
   display: flex;
@@ -309,6 +325,7 @@ td {
 
   font-size: larger;
 }
+
 #details-data1 input {
   height: 48px;
   border: none;
@@ -330,6 +347,7 @@ td {
   cursor: pointer;
   font-size: large;
 }
+
 #details-data1 button:hover {
   background-color: rgb(93, 170, 65);
 }
@@ -350,6 +368,7 @@ td {
 #sidebar-button {
   display: none;
 }
+
 #delete-modal {
   position: fixed;
   z-index: 5000;
@@ -363,6 +382,7 @@ td {
   color: #262626;
   box-shadow: 0 0 0 100vh rgba(0, 0, 0, 0.6);
 }
+
 #rental-modal {
   position: fixed;
   z-index: 5000;
@@ -382,9 +402,11 @@ td {
   flex-direction: column;
   gap: 20px;
 }
+
 #date-form label {
   font-size: larger;
 }
+
 #date-form input {
   height: 48px;
   border: none;
@@ -401,6 +423,7 @@ td {
   flex-direction: column;
   gap: 20px;
 }
+
 #full-form button {
   border: none;
   border-radius: 8px 8px 8px 8px;
@@ -416,6 +439,7 @@ td {
   display: flex;
   justify-content: space-between;
 }
+
 #upper-section button {
   background: none;
   border: none;
@@ -435,9 +459,11 @@ td {
   #nav-bar header {
     padding-right: 75px;
   }
+
   .outlet-div {
     margin-left: 0;
   }
+
   table {
     margin-left: 20px;
   }
@@ -451,10 +477,12 @@ td {
     z-index: 1000;
     margin-top: 80px;
   }
+
   #main-content aside.open {
     display: flex;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
   }
+
   #sidebar-button {
     display: block;
     font-weight: bolder;
@@ -469,6 +497,7 @@ td {
     margin-right: 20px;
     margin-top: 10px;
   }
+
   #details-box {
     top: 65%;
     height: 60vh;
@@ -479,14 +508,17 @@ td {
   #nav-bar header {
     padding-right: 85px;
   }
+
   #details-box {
     flex-direction: column;
     height: 80vh;
     margin-top: -50px;
   }
+
   #details-box img {
     height: 30vh;
   }
+
   .outlet-div {
     margin-left: 0;
   }
@@ -506,6 +538,7 @@ td {
     text-align: center;
     padding: 60px;
   }
+
   #details-box img {
     height: 30vh;
   }
@@ -515,9 +548,11 @@ td {
   #nav-bar header {
     padding-right: 100px;
   }
+
   .outlet-div {
     margin-left: 2px;
   }
+
   #details-box {
     flex-direction: column;
     height: 65vh;
@@ -536,10 +571,18 @@ td {
   #details-data {
     padding: 0px;
   }
+
   #details-box img {
     height: 30vh;
   }
+
   table {
     margin-left: 0;
   }
+}
+
+.error-container {
+  text-align: center;
+  margin-top: 100px;
+  padding: 20px;
 }

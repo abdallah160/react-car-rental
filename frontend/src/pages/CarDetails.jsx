@@ -62,7 +62,7 @@ export default function CarDetails() {
                             <button type="submit" onClick={handleDeleteModal}>Delete</button>
                         </div>}
                         <DeleteModal modalState={deleteModalState} closeModal={closeDeleteModal} modalRef={deleteModalRef} carID={data.id} />
-                        <CarModal modalState={editModalState} closeModal={closeEditModal} modalRef={editModalRef} type={"edit"} />
+                        <CarModal modalState={editModalState} closeModal={closeEditModal} modalRef={editModalRef} type={"edit"} carData={data} />
                         <RentalModal modalState={rentalModalState} carID={data.id} closeModal={closeRentModal} modalRef={rentalModalRef} />
                     </div>
                 </div>

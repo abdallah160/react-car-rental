@@ -22,7 +22,7 @@ export default async function addEditAction({ request }) {
       name: carName,
       description: carDescription,
       pricePerDay: Number(carPrice),
-      images: Array.isArray(carImages) ? carImages : [],
+      images: [carImages],
       available: true,
     }),
   });

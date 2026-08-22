@@ -28,7 +28,7 @@
     },
     {
       "id": 5,
-      "name": "Opel Astra",
+      "name": "Opel Astr",
       "description": "Sleek and efficient German compact hatchback with a premium interior and advanced safety features.",
       "pricePerDay": 55,
       "images": [
@@ -115,6 +115,16 @@
         "/images/newCars/peugeot_308_artense_silver_perspective1_16505_5b28670d8d.png"
       ],
       "available": true
+    },
+    {
+      "id": 14,
+      "name": "12322",
+      "description": "12322",
+      "pricePerDay": 12322,
+      "images": [
+        "123123123123123"
+      ],
+      "available": true
     }
   ],
   "rentals": [
@@ -181,6 +191,14 @@
       "startDate": "2026-08-12",
       "endDate": "2026-08-21",
       "totalPrice": 585
+    },
+    {
+      "id": 9,
+      "userId": 1,
+      "carId": 14,
+      "startDate": "2026-09-01",
+      "endDate": "2026-09-05",
+      "totalPrice": 560
     }
   ]
 }

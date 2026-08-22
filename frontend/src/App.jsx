@@ -1,5 +1,6 @@
 import ProtectedLayout from "./components/ProtectedLayout";
 import RootLayout from "./components/RootLayout";
+import ErrorBoundary from "./components/ErrorBoundary";
 import addEditAction from "./loaders/addEditAction";
 import detailsLoader from "./loaders/detailsLoader";
 import historyLoader from "./loaders/historyLoader";
@@ -18,34 +19,47 @@ function App() {
       path: "/login",
       element: <SignPage />,
       action: loginAction,
+      errorElement: <ErrorBoundary />,
     },
     {
       path: "/",
       element: <ProtectedLayout />,
+      errorElement: <ErrorBoundary />,
       children: [
         {
           path: "/",
           element: <RootLayout />,
+          errorElement: <ErrorBoundary />,
           children: [
-            { path: "/", element: <Home />, loader: homeLoader, action: addEditAction, },
+            {
+              path: "/",
+              element: <Home />,
+              loader: homeLoader,
+              action: addEditAction,
+              errorElement: <ErrorBoundary />,
+            },
             {
               path: "/:id",
               element: <CarDetails />,
               loader: detailsLoader,
               action: rentalAction,
+              errorElement: <ErrorBoundary />,
             },
-            { path: "/history", element: <History />, loader: historyLoader },
+            {
+              path: "/history",
+              element: <History />,
+              loader: historyLoader,
+              errorElement: <ErrorBoundary />,
+            },
           ],
         },
       ],
     },
   ]);
 
-  return (
-    <>
-      <RouterProvider router={router}></RouterProvider>
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
+
+
